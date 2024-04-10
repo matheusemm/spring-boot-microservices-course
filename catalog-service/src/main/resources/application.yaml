@@ -5,6 +5,8 @@ spring:
     url: ${DB_URL:jdbc:postgresql://localhost:15432/postgres}
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:postgres}
+#  flyway:
+#    validate-migration-naming: true
 
 server:
   port: 8081
@@ -18,3 +20,6 @@ management:
   info:
     git:
       mode: full
+
+catalog:
+  page-size: 10

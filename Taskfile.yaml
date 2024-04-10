@@ -12,7 +12,7 @@ tasks:
       - task: test
 
   test:
-    deps: [format]
+    deps: [ format ]
     cmds:
       - "{{.MVNW}} clean verify"
 
