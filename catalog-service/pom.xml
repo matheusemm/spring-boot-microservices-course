@@ -15,6 +15,7 @@
     <description>Catalog Service</description>
     <properties>
         <java.version>21</java.version>
+        <dockerImageName>memmoreira/bookstore-${project.artifactId}</dockerImageName>
     </properties>
     <dependencies>
         <dependency>
@@ -95,6 +96,12 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <image>
+                        <name>${dockerImageName}</name>
+                        <builder>dashaun/builder:tiny</builder>
+                    </image>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
