@@ -40,6 +40,10 @@ tasks:
       - task: sleep
       - task: start_infra
 
+  logs_infra:
+    cmds:
+      - "docker compose -f {{.INFRA_DC_FILE}} logs -f"
+
   start:
     deps: [ build ]
     cmds:
