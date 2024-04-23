@@ -29,8 +29,25 @@ management:
       mode: full
 
 order:
+  catalog-service-url: http://localhost:8081
   orders-events-exchange: orders-exchange
   new-orders-queue: new-orders
   delivered-orders-queue: delivered-orders
   cancelled-orders-queue: cancelled-orders
   error-orders-queue: error-orders
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      catalog-service:
+        sliding-window-type: count_based
+        sliding-window-size: 6
+        minimum-number-of-calls: 4
+        wait-duration-in-open-state: 20s
+        permitted-number-of-calls-in-half-open-state: 2
+        failure-rate-threshold: 50
+  retry:
+    instances:
+      catalog-service:
+        max-attempts: 2
+        wait-duration: 1s

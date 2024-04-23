@@ -4,6 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "order")
 public record ApplicationProperties(
+        String catalogServiceUrl,
         String ordersEventsExchange,
         String newOrdersQueue,
         String deliveredOrdersQueue,

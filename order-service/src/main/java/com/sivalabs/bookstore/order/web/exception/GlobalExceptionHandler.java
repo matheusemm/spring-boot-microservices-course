@@ -1,5 +1,6 @@
 package com.sivalabs.bookstore.order.web.exception;
 
+import com.sivalabs.bookstore.order.domain.InvalidOrderException;
 import com.sivalabs.bookstore.order.domain.OrderNotFoundException;
 import java.net.URI;
 import java.time.Instant;
@@ -33,10 +34,22 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(OrderNotFoundException.class)
-    ProblemDetail handleProductNotFoundException(OrderNotFoundException e) {
+    ProblemDetail handleOrderNotFoundException(OrderNotFoundException e) {
         var problem = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
         problem.setTitle("Order Not Found");
         problem.setType(NOT_FOUND_TYPE);
+        problem.setProperty("service", SERVICE_NAME);
+        problem.setProperty("error_category", "Generic");
+        problem.setProperty("timestamp", Instant.now());
+
+        return problem;
+    }
+
+    @ExceptionHandler(InvalidOrderException.class)
+    ProblemDetail handleInvalidOrderException(InvalidOrderException e) {
+        var problem = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getMessage());
+        problem.setTitle("Invalid Order Creation Request");
+        problem.setType(BAD_REQUEST_TYPE);
         problem.setProperty("service", SERVICE_NAME);
         problem.setProperty("error_category", "Generic");
         problem.setProperty("timestamp", Instant.now());
