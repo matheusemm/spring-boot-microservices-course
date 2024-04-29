@@ -1,6 +1,8 @@
 package com.sivalabs.bookstore.order.domain;
 
 import com.sivalabs.bookstore.order.domain.model.CreateOrderRequest;
+import com.sivalabs.bookstore.order.domain.model.OrderDTO;
+import com.sivalabs.bookstore.order.domain.model.OrderItem;
 import com.sivalabs.bookstore.order.domain.model.OrderStatus;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -26,5 +28,21 @@ class OrderMapper {
                 .collect(Collectors.toSet()));
 
         return order;
+    }
+
+    static OrderDTO convertToDTO(OrderEntity order) {
+        var items = order.getItems().stream()
+                .map(item -> new OrderItem(item.getCode(), item.getName(), item.getPrice(), item.getQuantity()))
+                .collect(Collectors.toSet());
+
+        return new OrderDTO(
+                order.getOrderNumber(),
+                order.getUserName(),
+                items,
+                order.getCustomer(),
+                order.getDeliveryAddress(),
+                order.getStatus(),
+                order.getComments(),
+                order.getCreatedAt());
     }
 }

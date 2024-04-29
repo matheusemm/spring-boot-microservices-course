@@ -1,10 +1,8 @@
 package com.sivalabs.bookstore.order.domain;
 
-import com.sivalabs.bookstore.order.domain.model.CreateOrderRequest;
-import com.sivalabs.bookstore.order.domain.model.CreateOrderResponse;
-import com.sivalabs.bookstore.order.domain.model.OrderCreatedEvent;
-import com.sivalabs.bookstore.order.domain.model.OrderStatus;
+import com.sivalabs.bookstore.order.domain.model.*;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,5 +72,15 @@ public class OrderService {
     private boolean canBeDelivered(OrderEntity order) {
         return DELIVERY_ALLOWED_COUNTRIES.contains(
                 order.getDeliveryAddress().country().toUpperCase());
+    }
+
+    public List<OrderSummary> findOrders(String userName) {
+        return orderRepository.findByUserName(userName);
+    }
+
+    public Optional<OrderDTO> findUserOrder(String userName, String orderNumber) {
+        return orderRepository
+                .findByUserNameAndOrderNumber(userName, orderNumber)
+                .map(OrderMapper::convertToDTO);
     }
 }
