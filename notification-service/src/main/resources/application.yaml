@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: notification-service
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:35432/postgres}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+  jpa:
+    open-in-view: false
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+  mail:
+    host: ${MAIL_HOST:127.0.0.1}
+    port: ${MAIL_PORT:1025}
+    username: ${MAIL_USERNAME:PLACEHOLDER}
+    password: ${MAIL_PASSWORD:PLACEHOLDER}
+    smtp:
+      auth: true
+      starttls:
+        enable: true
+#  flyway:
+#    validate-migration-naming: true
+
+server:
+  port: 8083
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    git:
+      mode: full
+
+notification:
+  catalog-service-url: http://localhost:8081
+  orders-events-exchange: orders-exchange
+  new-orders-queue: new-orders
+  delivered-orders-queue: delivered-orders
+  cancelled-orders-queue: cancelled-orders
+  error-orders-queue: error-orders
+  support-email: matheus.moreira@gmail.com
