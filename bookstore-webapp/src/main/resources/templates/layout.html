@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.5.1/css/all.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+
+    <title>BookStore</title>
+</head>
+<body>
+<main>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a href="#" th:href="@{/}" class="navbar-brand">
+                <img th:src="@{/images/books.png}" alt="Books logo" width="40" height="40">
+                BookStore
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a href="/orders" class="nav-link" th:href="@{/orders}">
+                            Orders
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/cart" class="nav-link" th:href="@{/cart}">
+                            Cart <span id="cart-item-count">(0)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="app" class="container">
+        <div layout:fragment="content">
+            <!-- Page content goes here -->
+        </div>
+    </div>
+</main>
+
+<script th:src="@{/webjars/jquery/3.7.1/jquery.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.js}"></script>
+<script defer th:src="@{/webjars/alpinejs/3.13.5/dist/cdn.min.js}"></script>
+<div layout:fragment="pageScripts"></div>
+</body>
+</html>

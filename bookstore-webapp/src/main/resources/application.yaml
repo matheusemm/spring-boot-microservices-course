@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: bookstore-webapp
+
+server:
+  port: 8080
+  shutdown: graceful
