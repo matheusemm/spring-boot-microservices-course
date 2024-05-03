@@ -1,6 +1,19 @@
 spring:
   application:
     name: bookstore-webapp
+  security:
+    oauth2:
+      client:
+        registration:
+          bookstore-webapp:
+            client-id: bookstore-webapp
+            client-secret: QaGwNlu50ybnoUd9Q8oQ5Y3ZOMUsoO4V
+            authorization-grant-type: authorization_code
+            scope: openid, profile
+            redirect-uri: "{baseUrl}/login/oauth2/code/bookstore-webapp"
+        provider:
+          bookstore-webapp:
+            issuer-uri: ${webapp.oauth2.realm-url}
 
 server:
   port: 8080
@@ -8,3 +21,8 @@ server:
 
 bookstore:
   api-gateway-url: http://localhost:8989
+
+webapp:
+  oauth2:
+    server-url: http://localhost:9191
+    realm-url: ${webapp.oauth2.server-url}/realms/bookstore
