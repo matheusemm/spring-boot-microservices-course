@@ -43,7 +43,7 @@ document.addEventListener("alpine:init", () => {
             console.log(order);
 
             $.ajax({
-               url: "http://localhost:8989/order/api/orders",
+               url: "/api/orders",
                type: "POST",
                dataType: "json",
                contentType: "application/json",

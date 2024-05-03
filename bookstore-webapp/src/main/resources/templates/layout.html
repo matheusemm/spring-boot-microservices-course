@@ -57,6 +57,10 @@
 <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.js}"></script>
 <script defer th:src="@{/webjars/alpinejs/3.13.5/dist/cdn.min.js}"></script>
 <script th:src="@{/js/cartStore.js}"></script>
-<div layout:fragment="pageScripts"></div>
+<script th:inline="javascript">
+/*<![CDATA[*/
+const apiGatewayUrl = /*[[${@environment.getProperty('bookstore.api-gateway-url')}]]*/ '';
+/*]]>*/
+</script><div layout:fragment="pageScripts"></div>
 </body>
 </html>

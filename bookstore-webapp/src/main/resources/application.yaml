@@ -5,3 +5,6 @@ spring:
 server:
   port: 8080
   shutdown: graceful
+
+bookstore:
+  api-gateway-url: http://localhost:8989
