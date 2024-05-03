@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
     @Query(
-            "select new com.sivalabs.bookstore.catalog.domain.Product(p.name, p.code, p.description, p.imageUrl, p.price) from ProductEntity p")
+            "select new com.sivalabs.bookstore.catalog.domain.Product(p.code, p.name, p.description, p.imageUrl, p.price) from ProductEntity p")
     Page<Product> findAllProducts(Pageable pageable);
 
     Optional<Product> findByCode(String code);
