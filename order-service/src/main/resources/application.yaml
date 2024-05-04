@@ -12,6 +12,11 @@ spring:
     port: ${RABBITMQ_PORT:5672}
     username: ${RABBITMQ_USERNAME:guest}
     password: ${RABBITMQ_PASSWORD:guest}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${order.oauth2.realm-url}
 #  flyway:
 #    validate-migration-naming: true
 
@@ -37,6 +42,9 @@ order:
   error-orders-queue: error-orders
   publish-order-events-job-cron: "*/5 * * * * *"
   new-orders-job-cron: "*/10 * * * * *"
+  oauth2:
+    server-url: http://localhost:9191
+    realm-url: ${order.oauth2.server-url}/realms/bookstore
 
 resilience4j:
   circuitbreaker:
@@ -53,3 +61,6 @@ resilience4j:
       catalog-service:
         max-attempts: 2
         wait-duration: 1s
+
+swagger:
+  api-gateway-url: http://localhost:8989/order

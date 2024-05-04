@@ -1,6 +1,7 @@
 package com.sivalabs.bookstore.webapp.web.controller;
 
 import com.sivalabs.bookstore.webapp.client.order.*;
+import com.sivalabs.bookstore.webapp.service.SecurityHelper;
 import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Map;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
     private final OrderServiceClient orderServiceClient;
+    private final SecurityHelper securityHelper;
 
-    public OrderController(OrderServiceClient orderServiceClient) {
+    public OrderController(OrderServiceClient orderServiceClient, SecurityHelper securityHelper) {
         this.orderServiceClient = orderServiceClient;
+        this.securityHelper = securityHelper;
     }
 
     @GetMapping("/cart")
@@ -52,6 +55,7 @@ public class OrderController {
     }
 
     private Map<String, ?> getHeaders() {
-        return Map.of();
+        var accessToken = securityHelper.getAccessToken();
+        return Map.of("Authorization", "Bearer " + accessToken);
     }
 }

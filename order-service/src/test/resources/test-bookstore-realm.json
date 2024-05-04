@@ -543,8 +543,8 @@
     "alwaysDisplayInConsole" : false,
     "clientAuthenticatorType" : "client-secret",
     "secret" : "QaGwNlu50ybnoUd9Q8oQ5Y3ZOMUsoO4V",
-    "redirectUris" : [ "http://localhost:8989/webjars/swagger-ui/oauth2-redirect.html", "http://localhost:8080/login/oauth2/code/bookstore-webapp" ],
-    "webOrigins" : [ "http://localhost:8080", "http://localhost:8989" ],
+    "redirectUris" : [ "http://localhost:8080/login/oauth2/code/bookstore-webapp" ],
+    "webOrigins" : [ "http://localhost:8080" ],
     "notBefore" : 0,
     "bearerOnly" : false,
     "consentRequired" : false,
@@ -1213,7 +1213,7 @@
       "subType" : "anonymous",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "oidc-usermodel-property-mapper", "saml-user-attribute-mapper", "saml-role-list-mapper", "saml-user-property-mapper", "oidc-sha256-pairwise-sub-mapper", "oidc-address-mapper", "oidc-full-name-mapper", "oidc-usermodel-attribute-mapper" ]
+        "allowed-protocol-mapper-types" : [ "saml-user-property-mapper", "saml-role-list-mapper", "oidc-full-name-mapper", "oidc-sha256-pairwise-sub-mapper", "oidc-usermodel-attribute-mapper", "saml-user-attribute-mapper", "oidc-usermodel-property-mapper", "oidc-address-mapper" ]
       }
     }, {
       "id" : "b9a905af-109d-486f-a71d-d45b0309fd1f",
@@ -1245,7 +1245,7 @@
       "subType" : "authenticated",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "saml-role-list-mapper", "oidc-full-name-mapper", "saml-user-attribute-mapper", "oidc-usermodel-attribute-mapper", "oidc-usermodel-property-mapper", "oidc-sha256-pairwise-sub-mapper", "saml-user-property-mapper", "oidc-address-mapper" ]
+        "allowed-protocol-mapper-types" : [ "oidc-usermodel-property-mapper", "oidc-full-name-mapper", "saml-user-property-mapper", "saml-user-attribute-mapper", "saml-role-list-mapper", "oidc-sha256-pairwise-sub-mapper", "oidc-address-mapper", "oidc-usermodel-attribute-mapper" ]
       }
     }, {
       "id" : "36c9738a-2b6e-4e8a-a1d1-86ef9cdb69bf",
