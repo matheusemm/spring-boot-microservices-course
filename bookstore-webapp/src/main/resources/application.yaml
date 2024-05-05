@@ -13,7 +13,7 @@ spring:
             redirect-uri: "{baseUrl}/login/oauth2/code/bookstore-webapp"
         provider:
           bookstore-webapp:
-            issuer-uri: ${webapp.oauth2.realm-url}
+            issuer-uri: ${bookstore.oauth2.realm-url}
 
 server:
   port: 8080
@@ -21,8 +21,22 @@ server:
 
 bookstore:
   api-gateway-url: http://localhost:8989
-
-webapp:
   oauth2:
     server-url: http://localhost:9191
-    realm-url: ${webapp.oauth2.server-url}/realms/bookstore
+    realm-url: ${bookstore.oauth2.server-url}/realms/bookstore
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    git:
+      mode: full
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  tracing:
+    enabled: false
+    sampling:
+      probability: 1.0

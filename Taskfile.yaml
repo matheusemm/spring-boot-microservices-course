@@ -6,6 +6,7 @@ vars:
   DC_DIR: "deployment/docker-compose"
   INFRA_DC_FILE: "{{.DC_DIR}}/infra.yaml"
   APPS_DC_FILE: "{{.DC_DIR}}/apps.yaml"
+  MONITORING_DC_FILE: "{{.DC_DIR}}/monitoring.yaml"
 
 tasks:
   default:
@@ -47,6 +48,21 @@ tasks:
   logs_infra:
     cmds:
       - "docker compose -f {{.INFRA_DC_FILE}} logs -f"
+
+  start_monitoring:
+    cmds:
+      - "docker compose -f {{.MONITORING_DC_FILE}} up -d"
+
+  stop_monitoring:
+    cmds:
+      - "docker compose -f {{.MONITORING_DC_FILE}} stop"
+      - "docker compose -f {{.MONITORING_DC_FILE}} rm -f"
+
+  restart_monitoring:
+    cmds:
+      - task: stop_monitoring
+      - task: sleep
+      - task: start_monitoring
 
   start:
     deps: [ build ]
